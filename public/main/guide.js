@@ -353,7 +353,7 @@ function displayDialog(dialogText, category) {
 }
 
 // Konfigurasi URL server proxy Anda
-const PROXY_SERVER_URL = 'http://localhost:3000'; // Ganti dengan URL server Anda yang sudah deploy
+const PROXY_SERVER_URL = 'https://kaiwa-shiyou.vercel.app'; // Ganti dengan URL server Anda yang sudah deploy
 
 function speakFromButton(button) {
     return new Promise((resolve) => {

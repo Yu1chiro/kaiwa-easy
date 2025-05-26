@@ -13,6 +13,10 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 // Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors({
+  origin: 'https://kaiwa-shiyou.vercel.app', // ganti dengan domain frontend kamu
+  methods: ['GET', 'POST'],
+}));
 
 // Routes
 app.get('/', (req, res) => {
