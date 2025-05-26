@@ -22,7 +22,8 @@ app.use(cors({
 app.get('/', (req, res) => {
   res.json({ 
     status: 'CORS Proxy Active', 
-    usage: 'GET /tts?url=ENCODED_URL' 
+    usage: 'GET /tts?url=ENCODED_URL',
+    timestamp: new Date().toISOString()
   });
 });
 
