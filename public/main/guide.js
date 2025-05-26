@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (playAllButton) {
         playAllButton.addEventListener('click', playAllAudiosWithScroll);
     }
+        window.speechSynthesis.getVoices();
+
 });
 
 let currentPlayingIndex = 0;
@@ -387,11 +389,6 @@ function speakFromButton(button) {
     });
 }
 
-// Inisialisasi voices saat load halaman
-document.addEventListener('DOMContentLoaded', () => {
-    // Trigger voices load (untuk beberapa browser)
-    window.speechSynthesis.getVoices();
-});
 
 function processDialogLine(line, isTourist = false) {
     // Process romaji and translation with improved typography
