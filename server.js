@@ -2,8 +2,11 @@ require('dotenv').config();
 const express = require('express');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const path = require('path');
+const cors = require('cors');
+const fetch = require('node-fetch');
 
 const app = express();
+app.use(cors());
 const port = process.env.PORT || 3000;
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
@@ -12,6 +15,55 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
+app.get('/', (req, res) => {
+  res.json({ 
+    status: 'CORS Proxy Active', 
+    usage: 'GET /tts?url=ENCODED_URL' 
+  });
+});
+
+// Proxy endpoint untuk ResponsiveVoice
+app.get('/tts', async (req, res) => {
+  try {
+    const targetUrl = req.query.url;
+    
+    if (!targetUrl) {
+      return res.status(400).json({ error: 'Parameter url diperlukan' });
+    }
+
+    console.log('Proxying:', decodeURIComponent(targetUrl));
+    
+    // Fetch dari ResponsiveVoice
+    const response = await fetch(decodeURIComponent(targetUrl), {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+
+    // Set headers untuk audio
+    res.set({
+      'Content-Type': response.headers.get('content-type') || 'audio/mpeg',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET',
+      'Cache-Control': 'public, max-age=3600'
+    });
+
+    // Stream audio ke client
+    response.body.pipe(res);
+
+  } catch (error) {
+    console.error('Proxy error:', error.message);
+    res.status(500).json({ 
+      error: 'Gagal mengambil audio', 
+      details: error.message 
+    });
+  }
+});
+
 app.get('/guide/:category', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'guide.html'));
 });

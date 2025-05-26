@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
         playAllButton.addEventListener('click', playAllAudiosWithScroll);
     }
         window.speechSynthesis.getVoices();
+        // Optimized speak function with responsive voice and fallback
+
+// Enhanced button handler with better state management
 
 });
 
@@ -348,47 +351,251 @@ function displayDialog(dialogText, category) {
 
     dialogContainer.innerHTML = htmlContent;
 }
-// Versi super robust dengan multiple fallback dan deteksi suara
-function speakJapanese(text) {
-  if (responsiveVoice) {
-    responsiveVoice.speak(text, "Japanese Female", {
-      rate: 1,
-      onerror: () => {
-        // Fallback ke Web Speech jika gagal
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'ja-JP';
-        window.speechSynthesis.speak(utterance);
-      }
-    });
-  }
-}
 
-// Fungsi tombol dengan loading state
+// Konfigurasi URL server proxy Anda
+const PROXY_SERVER_URL = 'http://localhost:3000'; // Ganti dengan URL server Anda yang sudah deploy
+
 function speakFromButton(button) {
     return new Promise((resolve) => {
+        if (!button) {
+            console.error('No button element provided');
+            return resolve();
+        }
+
         const originalText = button.textContent;
-        button.disabled = true;
-        button.textContent = 'Loading...';
-        
+        const originalHTML = button.innerHTML;
         const text = button.getAttribute('data-jp');
         
-        try {
-            speakJapanese(text);
-            // Resolve after a reasonable time for the audio to play
-            setTimeout(() => {
-                button.textContent = originalText;
+        if (!text) {
+            console.error('No text data found on button');
+            return resolve();
+        }
+
+        // Set loading state
+        button.disabled = true;
+        button.innerHTML = '<span class="animate-pulse">🔊 Memuat...</span>';
+        
+        // Create a queue system to prevent overlapping speech
+        if (!window.speechQueue) {
+            window.speechQueue = [];
+            window.isSpeaking = false;
+        }
+
+        const speakTask = () => {
+            window.isSpeaking = true;
+            try {
+                speakJapanese(text);
+                
+                // Set timeout to reset button (since we don't have perfect callbacks)
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.disabled = false;
+                    window.isSpeaking = false;
+                    
+                    // Process next in queue if exists
+                    if (window.speechQueue.length > 0) {
+                        const nextTask = window.speechQueue.shift();
+                        nextTask();
+                    }
+                    resolve();
+                }, Math.max(text.length * 150, 2000)); // Estimate duration based on text length
+            } catch (e) {
+                console.error('Speech error:', e);
+                button.innerHTML = originalHTML;
                 button.disabled = false;
+                window.isSpeaking = false;
                 resolve();
-            }, 2000); // Adjust timing based on average audio length
-        } catch (e) {
-            console.error('Error:', e);
-            button.textContent = originalText;
-            button.disabled = false;
-            resolve();
+            }
+        };
+
+        // Add to queue or execute immediately
+        if (window.isSpeaking) {
+            window.speechQueue.push(speakTask);
+        } else {
+            speakTask();
         }
     });
 }
 
+async function speakJapanese(text) {
+    // Cancel any ongoing speech first
+    if (window.currentAudio) {
+        window.currentAudio.pause();
+        window.currentAudio = null;
+    }
+    
+    try {
+        // Menggunakan proxy server untuk ResponsiveVoice
+        await speakWithProxy(text);
+    } catch (error) {
+        console.error('Proxy speech error:', error);
+        // Fallback ke Web Speech API jika proxy gagal
+        fallbackSpeech(text);
+    }
+}
+
+async function speakWithProxy(text) {
+    try {
+        // Buat URL ResponsiveVoice dengan parameter yang dibutuhkan
+        const responsiveVoiceUrl = `https://code.responsivevoice.org/getvoice.php?t=${encodeURIComponent(text)}&tl=ja&sv=g1&vn=&pitch=0.5&rate=0.5&vol=1&gender=female`;
+        
+        // Encode URL untuk dikirim ke proxy
+        const encodedUrl = encodeURIComponent(responsiveVoiceUrl);
+        
+        // Panggil proxy server Anda
+        const proxyUrl = `${PROXY_SERVER_URL}/tts?url=${encodedUrl}`;
+        
+        console.log('🔊 Memutar audio via proxy...');
+        
+        // Buat audio element dan mainkan
+        const audio = new Audio(proxyUrl);
+        window.currentAudio = audio;
+        
+        // Promise untuk menunggu audio selesai
+        return new Promise((resolve, reject) => {
+            let hasResolved = false;
+            
+            audio.onloadstart = () => console.log('📡 Loading audio...');
+            audio.oncanplay = () => console.log('✅ Audio ready');
+            audio.onplay = () => console.log('▶️ Playing audio');
+            
+            audio.onended = () => {
+                if (!hasResolved) {
+                    console.log('✅ Audio finished');
+                    window.currentAudio = null;
+                    hasResolved = true;
+                    resolve();
+                }
+            };
+            
+            // Error handling yang lebih toleran
+            audio.onerror = (e) => {
+                // Jangan langsung reject jika audio sudah mulai diputar
+                if (audio.currentTime > 0 || audio.readyState >= 2) {
+                    console.log('⚠️ Minor audio error ignored (audio still playing)');
+                    return;
+                }
+                
+                if (!hasResolved) {
+                    console.log('❌ Audio error - switching to fallback');
+                    window.currentAudio = null;
+                    hasResolved = true;
+                    reject(new Error('Audio failed'));
+                }
+            };
+            
+            // Mulai putar audio dengan error handling yang lebih baik
+            audio.play().catch(e => {
+                if (!hasResolved) {
+                    console.log('❌ Play failed - switching to fallback');
+                    hasResolved = true;
+                    reject(e);
+                }
+            });
+            
+            // Timeout sebagai backup jika audio terlalu lama
+            setTimeout(() => {
+                if (!hasResolved && audio.currentTime === 0) {
+                    console.log('⏰ Audio timeout - switching to fallback');
+                    hasResolved = true;
+                    reject(new Error('Audio timeout'));
+                }
+            }, 5000);
+        });
+        
+    } catch (error) {
+        console.log('❌ Proxy error - switching to fallback');
+        throw error;
+    }
+}
+
+// Web Speech API fallback (tetap sama seperti sebelumnya)
+function fallbackSpeech(text) {
+    console.log('🔄 Switching to Web Speech API fallback');
+    
+    if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'ja-JP';
+        utterance.rate = 0.9;
+        
+        // Try to find a Japanese voice
+        const voices = window.speechSynthesis.getVoices();
+        const japaneseVoice = voices.find(voice => voice.lang === 'ja-JP' || voice.lang.startsWith('ja-'));
+        
+        if (japaneseVoice) {
+            utterance.voice = japaneseVoice;
+        }
+        
+        utterance.onstart = () => console.log('🎤 Web Speech API playing');
+        utterance.onend = () => console.log('✅ Web Speech API finished');
+        utterance.onerror = (e) => console.log('⚠️ Web Speech API minor error:', e.error);
+        
+        window.speechSynthesis.speak(utterance);
+    } else {
+        console.log('❌ Speech synthesis not supported in this browser');
+    }
+}
+
+// Fungsi tambahan untuk testing koneksi ke proxy server
+async function testProxyConnection() {
+    try {
+        const response = await fetch(`${PROXY_SERVER_URL}/`);
+        const data = await response.json();
+        console.log('Proxy server status:', data);
+        return true;
+    } catch (error) {
+        console.error('Tidak dapat terhubung ke proxy server:', error);
+        return false;
+    }
+}
+
+// Panggil test koneksi saat halaman dimuat
+document.addEventListener('DOMContentLoaded', () => {
+    testProxyConnection();
+});
+
+// Alternatif jika ingin menggunakan fetch dengan async/await yang lebih robust
+async function speakWithProxyAlternative(text) {
+    try {
+        const responsiveVoiceUrl = `https://code.responsivevoice.org/getvoice.php?t=${encodeURIComponent(text)}&tl=ja&sv=g1&vn=&pitch=0.5&rate=0.5&vol=1&gender=female`;
+        const encodedUrl = encodeURIComponent(responsiveVoiceUrl);
+        const proxyUrl = `${PROXY_SERVER_URL}/tts?url=${encodedUrl}`;
+        
+        // Fetch audio data
+        const response = await fetch(proxyUrl);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        // Convert response to blob
+        const audioBlob = await response.blob();
+        const audioUrl = URL.createObjectURL(audioBlob);
+        
+        // Create and play audio
+        const audio = new Audio(audioUrl);
+        window.currentAudio = audio;
+        
+        return new Promise((resolve, reject) => {
+            audio.onended = () => {
+                URL.revokeObjectURL(audioUrl); // Cleanup
+                window.currentAudio = null;
+                resolve();
+            };
+            audio.onerror = (e) => {
+                URL.revokeObjectURL(audioUrl); // Cleanup
+                window.currentAudio = null;
+                reject(new Error('Gagal memutar audio'));
+            };
+            
+            audio.play().catch(reject);
+        });
+        
+    } catch (error) {
+        console.error('Error dalam speakWithProxyAlternative:', error);
+        throw error;
+    }
+}
 
 function processDialogLine(line, isTourist = false) {
     // Process romaji and translation with improved typography
