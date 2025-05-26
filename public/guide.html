@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialog Praktis Belanja di Jepang</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=a1nhYLyT"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+      .dialog-container {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+    </style>
+    <script src="/scripts/guide.js" defer></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <main class="container mx-auto px-4 py-8">
+        <a href="/" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            Kembali ke Beranda
+        </a>
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
+            <div class="p-6 border-b border-gray-200">
+                <h1 id="guide-title" class="text-xl font-bold text-gray-800"></h1>
+                <div id="category-image-container" class="mt-4 w-full overflow-hidden rounded-lg">
+            <!-- Image will be inserted here dynamically -->
+        </div>
+            </div>
+            
+           <div class="p-6 flex flex-wrap justify-center gap-4">
+    <button id="generate-btn" class="flex items-center bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
+        <i class="fas fa-rotate mr-2"></i>
+        <span>Generate Dialog Baru</span>
+    </button>
+    <button id="playall-audio" class="flex items-center bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200">
+        <i class="fas fa-volume-up mr-2"></i>
+        <span>Play Dialog</span>
+    </button>
+</div>
+
+        </div>
+
+        <div id="loader" class="hidden text-center py-12">
+            <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+            <p class="mt-4 text-gray-600">Membuat dialog...</p>
+        </div>
+
+        <div id="error-container" class="hidden bg-red-50 border-l-4 border-red-500 p-4 mb-6 rounded">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <p id="error-message" class="text-sm text-red-700"></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="dialog-container" class="dialog-container shadow-lg overflow-hidden">
+            <!-- Dialog akan muncul di sini -->
+        </div>
+    </main>
+</body>
+</html>
