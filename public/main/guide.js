@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'ramen': 'Ramen Shop',
         'souvenir': 'Toko Souvenir',
         'pakaian': 'Toko Pakaian',
-        'stasiun': 'Stasiun'
+        'stasiun': 'Stasiun',
+        'kantor':'cara berkomunikasi di kantor',
+        'reservasi':'tata cara reservasi hotel'
     };
     
     // Update title and description
@@ -133,7 +135,10 @@ function getCategoryImagePath(category) {
         'ramen': '/img/resutoran.png',
         'souvenir': '/img/omiyage.png',
         'pakaian': '/img/shatsu.png',
-        'stasiun': '/img/eki.png'
+        'stasiun': '/img/eki.png',
+        'reservasi': '/img/hotel.png',
+        'kantor': '/img/kantor.png',
+
     };
     return imageMap[category] || '/img/default.png'; // Fallback image
 }
@@ -160,7 +165,9 @@ function getCategoryDescription(category) {
         'ramen': 'Memesan & Menikmati Ramen',
         'souvenir': 'Menanyakan & Membeli Souvenir',
         'pakaian': 'Membeli & Mencoba Pakaian',
-        'stasiun': 'Menanyakan & Membeli Tiket di Stasiun'
+        'stasiun': 'Menanyakan & Membeli Tiket di Stasiun',
+        'kantor': 'Berkomunikasi dengan karyawan terkait pekerjaan',
+        'reservasi': 'Cara melakukan reservasi hotel di jepang'
     };
     return descriptions[category] || 'Belajar dialog praktis untuk pemula';
 }

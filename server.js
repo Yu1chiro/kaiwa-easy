@@ -27,18 +27,16 @@ app.get('/', (req, res) => {
   });
 });
 
-// Proxy endpoint untuk ResponsiveVoice
 app.get('/tts', async (req, res) => {
   try {
     const targetUrl = req.query.url;
     
     if (!targetUrl) {
-      return res.status(400).json({ error: 'Parameter url diperlukan' });
+      return res.status(400).json({ error: 'url not found' });
     }
 
     console.log('Proxying:', decodeURIComponent(targetUrl));
     
-    // Fetch dari ResponsiveVoice
     const response = await fetch(decodeURIComponent(targetUrl), {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
@@ -49,7 +47,6 @@ app.get('/tts', async (req, res) => {
       throw new Error(`HTTP ${response.status}: ${response.statusText}`);
     }
 
-    // Set headers untuk audio
     res.set({
       'Content-Type': response.headers.get('content-type') || 'audio/mpeg',
       'Access-Control-Allow-Origin': '*',
@@ -91,10 +88,19 @@ switch (category.toLowerCase()) {
     case 'ramen':
         specificInstructions = `Fokuskan dialog pada proses memesan makanan dan minuman di restoran ramen Jepang. Termasuk menanyakan menu, rekomendasi, dan membayar.`;
         break;
+    case 'souvenir':
+        specificInstructions = `Fokuskan dialog pada proses membeli souvenir di departement store. Termasuk menanyakan produk, rekomendasi produk dan cara membayar.`;
+        break;
+    case 'reservasi':
+    specificInstructions = `Fokuskan dialog pada proses melakukan reservasi hotel di Jepang. Termasuk menanyakan ketersediaan kamar, mengisi formulir reservasi, meminta informasi fasilitas, hingga proses pembayaran. Karyawan (K) menggunakan keigo sesuai standar pelayanan hotel di Jepang, dan turis (T) berbicara sopan menggunakan pola desu/masu.`;
+    break;
+    case 'kantor':
+       specificInstructions = `Fokuskan dialog pada proses berinteraksi di lingkungan kantor Jepang, seperti menanyakan prosedur pengurusan dokumen perusahaan, meminta izin bertemu direktur, atau bertanya mengenai aturan perusahaan. Gunakan gaya komunikasi formal di lingkungan kerja Jepang. Karyawan (K) menggunakan keigo sesuai budaya profesional di Jepang, sedangkan turis (T) juga berbicara dengan bahasa keigo sesuai budaya profesional kerja di jepang`;
+        break;
 }
 
 const prompt = `
-Buatkan contoh dialog sederhana antara turis (T) dan karyawan (K) saat berbelanja atau melakukan transaksi di ${category} Jepang.
+Buatkan contoh dialog sederhana antara turis (T) dan karyawan (K)  di ${category} Jepang.
 
 ${specificInstructions}
 
