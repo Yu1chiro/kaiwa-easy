@@ -142,13 +142,12 @@ Buatkan contoh dialog sederhana berdasarkan kategori "${category}" di Jepang.
 ${specificInstructions}
 
 Gunakan format berikut untuk setiap percakapan :
-untuk kalimat bahasa jepang gunakan kanji
 
-K: [Kalimat dalam bahasa Jepang]
+K: [Kalimat bahasa jepang kanji]
 (Romaji: [pelafalan])
 (Arti: [Terjemahan Indonesia])
 
-T: [Kalimat dalam bahasa Jepang]
+T: [Kalimat dalam bahasa jepang kanji]
 (Romaji: [pelafalan])
 (Arti: [Terjemahan Indonesia])
 
