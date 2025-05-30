@@ -1,220 +1,289 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panduan Belanja di Jepang untuk Pemula!</title>
+    <title>NihonGoEasy - Panduan Praktis Bahasa Jepang</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
     <style>
-  /* Reset untuk memberi kendali penuh ke Tailwind */
-  *, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+        /* Wabi-Sabi Foundation */
+        body {
+            background-color: #f9d5ac;
+            color: #3a3226;
+            font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
+        }
 
-  html, body {
-    height: 100%;
-    font-family: inherit;
-    line-height: inherit;
-    background: white;
-    color: black;
-  }
+        /* Japanese Paper Texture */
+        .japanese-paper {
+            background-color: #fef7e8;
+            background-image: 
+                linear-gradient(rgba(210,180,140,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(210,180,140,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            border: 1px solid rgba(210,180,140,0.3);
+        }
 
-  body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+        /* Natural Colors */
+        .sumi-iro { color: #1a120b; } /* Ink black */
+        .washi-iro { background-color: #fcfcfc; } /* Japanese paper */
+        .cha-iro { color: #6f4b3e; } /* Tea color */
+        .sakura-iro { color: #f8c3cd; } /* Cherry blossom */
+        .mizuiro { color: #a5dee4; } /* Water color */
 
-  img, video, canvas, svg {
-    display: block;
-    max-width: 100%;
-  }
+        /* Wabi-Sabi Elements */
+        .wabi-border {
+            border: 1px solid rgba(110, 80, 60, 0.2);
+            box-shadow: 0 2px 8px rgba(110, 80, 60, 0.05);
+        }
 
-  button, input, select, textarea {
-    font: inherit;
-    background: none;
-    border: none;
-    outline: none;
-  }
+        .wabi-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(110, 80, 60, 0.1);
+        }
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+        .wabi-focus:focus {
+            outline: 2px solid rgba(110, 80, 60, 0.3);
+            outline-offset: 2px;
+        }
 
-  ul, ol {
-    list-style: none;
-  }
+        /* Japanese Typography */
+        .kanji {
+            font-family: 'Noto Serif JP', serif;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
 
-  h1, h2, h3, h4, h5, h6, p {
-    font-weight: inherit;
-    font-size: inherit;
-  }
-</style>
+        .japanese {
+            font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', 'Meiryo', sans-serif;
+        }
 
+        /* Natural Animations */
+        .fade-in {
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+
+        /* Handcrafted Details */
+        .hand-line {
+            position: relative;
+        }
+
+        .hand-line::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(110,80,60,0.3), transparent);
+        }
+
+        /* Natural Shapes */
+        .organic-shape {
+            border-radius: 0 0 50% 50% / 0 0 15% 15%;
+        }
+    </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
-    <main class="container mx-auto px-4 py-5">
-        <!-- Hero Section -->
-        <section class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 shadow-xl mb-12">
-            <div class="absolute inset-0 opacity-10">
-                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1492571350019-22de08371fd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center"></div>
-            </div>
+<body class="washi-iro">
+    <main class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Hero Section with Wabi-Sabi aesthetic -->
+        <section class="relative overflow-hidden organic-shape mb-16 japanese-paper">
+            <!-- Natural texture overlay -->
+            <div class="absolute inset-0 opacity-10" style="
+                background-image: 
+                    radial-gradient(circle at 20% 30%, rgba(110,80,60,0.1) 0%, transparent 30%),
+                    radial-gradient(circle at 80% 70%, rgba(110,80,60,0.1) 0%, transparent 30%);
+            "></div>
             
-            <div class="relative z-10 px-6 py-16 sm:py-20 md:py-24 lg:py-28 text-center">
-                <div class="max-w-3xl mx-auto">
-                    <!-- Logo/Brand Name -->
-                    <div class="mb-4">
-                        <span class="text-3xl font-bold text-white tracking-wide bg-white bg-opacity-20 px-4 py-2 rounded-lg backdrop-blur-sm">NihonGoEasy</span>
-                    </div>
+            <div class="relative z-10 px-8 py-16 md:py-24 text-center">
+                <div class="max-w-3xl mx-auto fade-in">
+                    <h2 class="text-3xl font-light sumi-iro mb-6 leading-relaxed delay-200">
+                        Panduan Praktis Belanja & Percakapan<br>
+                        <span class="cha-iro kanji">Sehari-hari di Jepang</span>
+                    </h2>
                     
-                    <h1 class="text-2xl lg:text-4xl font-extrabold text-white mb-4 leading-tight">
-                        Panduan Praktis Belanja & Percakapan Sehari-hari di Jepang
-                    </h1>
-                    
-                    <p class="text-xl sm:text-lg text-indigo-100 mb-8 max-w-2xl mx-auto">
-                        Belajar dialog bahasa Jepang praktis yang bisa kamu pakai langsung saat liburan! 
-Klik salah satu kategori dan temukan percakapan kasual yang mudah diingat dan diucapkan.
+                    <p class="text-md cha-iro mb-10 max-w-2xl mx-auto leading-relaxed delay-300" style="font-weight: 350;">
+                        Belajar dialog bahasa Jepang praktis yang bisa kamu pakai langsung saat liburan.<br>
+                        Klik salah satu kategori dan temukan percakapan kasual yang mudah diingat dan diucapkan.
                     </p>
                     
-                    <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <a href="#categories" class="bg-white text-indigo-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition duration-200 transform hover:-translate-y-1 shadow-lg hover:shadow-xl flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                    <div class="delay-300">
+                        <a href="#categories" class="inline-flex items-center px-8 py-3 rounded-full transition-all duration-300 japanese-paper wabi-border wabi-hover wabi-focus washi-iro">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 cha-iro" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                             </svg>
-                            Mulai Belajar
+                            <span class="sumi-iro font-medium">Mulai Perjalanan Belajar</span>
                         </a>
-                       
                     </div>
                 </div>
             </div>
             
-            <!-- Decorative elements -->
-            <div class="absolute bottom-0 left-0 right-0 h-16 bg-white bg-opacity-10 backdrop-blur-sm"></div>
-            <div class="absolute top-4 right-4 w-16 h-16 rounded-full bg-yellow-300 bg-opacity-20 blur-xl"></div>
-            <div class="absolute bottom-8 left-8 w-24 h-24 rounded-full bg-pink-400 bg-opacity-20 blur-xl"></div>
+            <!-- Decorative elements with wabi-sabi aesthetic -->
+            <div class="absolute top-12 right-12 w-24 h-24 opacity-10" style="
+                background: radial-gradient(circle, rgba(110,80,60,0.3) 0%, transparent 70%);
+            "></div>
+            <div class="absolute bottom-12 left-12 w-20 h-20 opacity-10" style="
+                background: radial-gradient(circle, rgba(175,96,96,0.2) 0%, transparent 70%);
+            "></div>
         </section>
 
-      <div id="categories" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <!-- Card 1 -->
-    <a href="/guide/konbini" class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
-        <!-- Image Container -->
-        <div class="w-full h-48 bg-gray-200 overflow-hidden flex items-center justify-center">
-            <img src="/img/konbini.png" alt="kaimono" class="max-w-full max-h-full object-contain transition duration-500 group-hover:scale-105" />
-        </div>
-        
-        <!-- Content Container -->
-        <div class="p-6">
-            <div class="flex items-center mb-2">
-                <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded">Konbini</span>
-            </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-indigo-600 transition">Belanja di Konbini</h3>
-            <p class="text-gray-600 group-hover:text-gray-800 transition">Dialog percakapan sederhana saat membeli makanan, minuman, atau kebutuhan harian di minimarket Jepang.</p>
-        </div>
-    </a>
+        <!-- Cards Grid with Japanese aesthetic -->
+        <div id="categories" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Card 1 - Konbini -->
+            <a href="/guide/konbini" class="group fade-in delay-100">
+                <div class="h-full rounded-xl overflow-hidden japanese-paper wabi-border transition-all duration-300 wabi-hover">
+                    <!-- Image Container (unchanged as requested) -->
+                    <div class="w-full h-48 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden flex items-center justify-center p-4">
+                        <img src="/img/konbini.png" alt="kaimono" class="max-w-full max-h-full object-contain transition duration-500 group-hover:opacity-90" />
+                    </div>
+                    
+                    <!-- Content Container -->
+                    <div class="p-5">
+                        <div class="flex items-center mb-3">
+                            <span class="px-3 py-1 text-xs font-medium rounded-full japanese" style="background: rgba(110,80,60,0.1); color: #6f4b3e;">コンビニ</span>
+                        </div>
+                        <h3 class="text-lg font-medium sumi-iro mb-2 hand-line">Belanja di Konbini</h3>
+                        <p class="cha-iro text-sm leading-relaxed">Dialog percakapan sederhana saat membeli makanan, minuman, atau kebutuhan harian di minimarket Jepang.</p>
+                    </div>
+                </div>
+            </a>
 
-    <!-- Card 2 -->
-    <a href="/guide/ramen" class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
-        <!-- Image Container -->
-        <div class="w-full h-48 bg-gray-200 overflow-hidden flex items-center justify-center">
-            <img src="/img/resutoran.png" alt="kaimono" class="max-w-full max-h-full object-contain transition duration-500 group-hover:scale-105" />
-        </div>
-        
-        <!-- Content Container -->
-        <div class="p-6">
-            <div class="flex items-center mb-2">
-                <span class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded">Restoran</span>
-            </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-red-600 transition">Memesan Ramen di Restoran</h3>
-            <p class="text-gray-600 group-hover:text-gray-800 transition">Belajar dialog mudah untuk memesan ramen favoritmu di restoran Jepang.</p>
-        </div>
-    </a>
+            <!-- Card 2 - Ramen -->
+            <a href="/guide/ramen" class="group fade-in delay-200">
+                <div class="h-full rounded-xl overflow-hidden japanese-paper wabi-border transition-all duration-300 wabi-hover">
+                    <div class="w-full h-48 bg-gradient-to-br from-red-50 to-orange-50 overflow-hidden flex items-center justify-center p-4">
+                        <img src="/img/resutoran.png" alt="kaimono" class="max-w-full max-h-full object-contain transition duration-500 group-hover:opacity-90" />
+                    </div>
+                    
+                    <div class="p-5">
+                        <div class="flex items-center mb-3">
+                            <span class="px-3 py-1 text-xs font-medium rounded-full japanese" style="background: rgba(175,96,96,0.1); color: #af6060;">レストラン</span>
+                        </div>
+                        <h3 class="text-lg font-medium sumi-iro mb-2 hand-line">Memesan Ramen di Restoran</h3>
+                        <p class="cha-iro text-sm leading-relaxed">Belajar dialog mudah untuk memesan ramen favoritmu di restoran Jepang.</p>
+                    </div>
+                </div>
+            </a>
 
-    <!-- Card 3 -->
-    <a href="/guide/souvenir" class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
-        <!-- Image Container -->
-        <div class="w-full h-48 bg-gray-200 overflow-hidden flex items-center justify-center">
-            <img src="/img/omiyage.png" alt="kaimono" class="max-w-full max-h-full object-contain transition duration-500 group-hover:scale-105" />
-        </div>
-        
-        <!-- Content Container -->
-        <div class="p-6">
-            <div class="flex items-center mb-2">
-                <span class="bg-pink-100 text-pink-800 text-xs font-semibold px-2.5 py-0.5 rounded">Souvenir</span>
-            </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-pink-600 transition">Belanja oleh-oleh di Toko Souvenir</h3>
-            <p class="text-gray-600 group-hover:text-gray-800 transition">Gunakan percakapan praktis saat membeli suvenir khas Jepang untuk keluarga dan teman.</p>
-        </div>
-    </a>
+            <!-- Card 3 - Souvenir -->
+            <a href="/guide/souvenir" class="group fade-in delay-300">
+                <div class="h-full rounded-xl overflow-hidden japanese-paper wabi-border transition-all duration-300 wabi-hover">
+                    <div class="w-full h-48 bg-gradient-to-br from-pink-50 to-rose-50 overflow-hidden flex items-center justify-center p-4">
+                        <img src="/img/omiyage.png" alt="kaimono" class="max-w-full max-h-full object-contain transition duration-500 group-hover:opacity-90" />
+                    </div>
+                    
+                    <div class="p-5">
+                        <div class="flex items-center mb-3">
+                            <span class="px-3 py-1 text-xs font-medium rounded-full japanese" style="background: rgba(248,195,205,0.3); color: #d68b94;">お土産</span>
+                        </div>
+                        <h3 class="text-lg font-medium sumi-iro mb-2 hand-line">Belanja oleh-oleh di Toko Souvenir</h3>
+                        <p class="cha-iro text-sm leading-relaxed">Gunakan percakapan praktis saat membeli suvenir khas Jepang untuk keluarga dan teman.</p>
+                    </div>
+                </div>
+            </a>
 
-    <!-- Card 4 -->
-    <a href="/guide/pakaian" class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
-        <!-- Image Container -->
-        <div class="w-full h-48 bg-gray-200 overflow-hidden flex items-center justify-center">
-            <img src="/img/shatsu.png" alt="kaimono" class="max-w-full max-h-full object-contain transition duration-500 group-hover:scale-105" />
-        </div>
-        
-        <!-- Content Container -->
-        <div class="p-6">
-            <div class="flex items-center mb-2">
-                <span class="bg-cyan-100 text-cyan-800 text-xs font-semibold px-2.5 py-0.5 rounded">Fashion</span>
-            </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-cyan-600 transition">Belanja di Toko Pakaian</h3>
-            <p class="text-gray-600 group-hover:text-gray-800 transition">Dialog dasar saat mencoba dan membeli pakaian di toko Jepang.</p>
-        </div>
-    </a>
+            <!-- Card 4 - Pakaian -->
+            <a href="/guide/pakaian" class="group fade-in delay-100">
+                <div class="h-full rounded-xl overflow-hidden japanese-paper wabi-border transition-all duration-300 wabi-hover">
+                    <div class="w-full h-48 bg-gradient-to-br from-cyan-50 to-blue-50 overflow-hidden flex items-center justify-center p-4">
+                        <img src="/img/shatsu.png" alt="kaimono" class="max-w-full max-h-full object-contain transition duration-500 group-hover:opacity-90" />
+                    </div>
+                    
+                    <div class="p-5">
+                        <div class="flex items-center mb-3">
+                            <span class="px-3 py-1 text-xs font-medium rounded-full japanese" style="background: rgba(165,222,228,0.3); color: #6baeb5;">ファッション</span>
+                        </div>
+                        <h3 class="text-lg font-medium sumi-iro mb-2 hand-line">Belanja di Toko Pakaian</h3>
+                        <p class="cha-iro text-sm leading-relaxed">Dialog dasar saat mencoba dan membeli pakaian di toko Jepang.</p>
+                    </div>
+                </div>
+            </a>
 
-    <!-- Card 5 -->
-    <a href="/guide/stasiun" class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
-        <!-- Image Container -->
-        <div class="w-full h-48 bg-gray-200 overflow-hidden flex items-center justify-center">
-            <img src="/img/eki.png" alt="Gambar Stasiun" class="max-w-full max-h-full object-contain transition duration-500 group-hover:scale-105" />
+            <!-- Card 5 - Stasiun -->
+            <a href="/guide/stasiun" class="group fade-in delay-200">
+                <div class="h-full rounded-xl overflow-hidden japanese-paper wabi-border transition-all duration-300 wabi-hover">
+                    <div class="w-full h-48 bg-gradient-to-br from-blue-50 to-indigo-50 overflow-hidden flex items-center justify-center p-4">
+                        <img src="/img/eki.png" alt="Gambar Stasiun" class="max-w-full max-h-full object-contain transition duration-500 group-hover:opacity-90" />
+                    </div>
+                    
+                    <div class="p-5">
+                        <div class="flex items-center mb-3">
+                            <span class="px-3 py-1 text-xs font-medium rounded-full japanese" style="background: rgba(110,80,60,0.1); color: #6f4b3e;">交通</span>
+                        </div>
+                        <h3 class="text-lg font-medium sumi-iro mb-2 hand-line">Beli Tiket di Stasiun</h3>
+                        <p class="cha-iro text-sm leading-relaxed">Dialog dasar tentang tata cara membeli tiket di stasiun kereta</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 6 - Kaisha -->
+            <a href="/guide/kaisha" class="group fade-in delay-300">
+                <div class="h-full rounded-xl overflow-hidden japanese-paper wabi-border transition-all duration-300 wabi-hover">
+                    <div class="w-full h-48 bg-gradient-to-br from-green-50 to-emerald-50 overflow-hidden flex items-center justify-center p-4">
+                        <img src="/img/kaisha.png" alt="Gambar Kantor" class="max-w-full max-h-full object-contain transition duration-500 group-hover:opacity-90" />
+                    </div>
+                    
+                    <div class="p-5">
+                        <div class="flex items-center mb-3">
+                            <span class="px-3 py-1 text-xs font-medium rounded-full japanese" style="background: rgba(110,80,60,0.1); color: #6f4b3e;">会社</span>
+                        </div>
+                        <h3 class="text-lg font-medium sumi-iro mb-2 hand-line">Bekerja di Kantor</h3>
+                        <p class="cha-iro text-sm leading-relaxed">Dialog dasar tentang berkomunikasi dengan karyawan perusahaan</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 7 - Reservasi -->
+            <a href="/guide/reservasi" class="group fade-in delay-100">
+                <div class="h-full rounded-xl overflow-hidden japanese-paper wabi-border transition-all duration-300 wabi-hover">
+                    <div class="w-full h-48 bg-gradient-to-br from-purple-50 to-violet-50 overflow-hidden flex items-center justify-center p-4">
+                        <img src="/img/hotel.png" alt="Gambar Hotel" class="max-w-full max-h-full object-contain transition duration-500 group-hover:opacity-90" />
+                    </div>
+                    
+                    <div class="p-5">
+                        <div class="flex items-center mb-3">
+                            <span class="px-3 py-1 text-xs font-medium rounded-full japanese" style="background: rgba(110,80,60,0.1); color: #6f4b3e;">予約</span>
+                        </div>
+                        <h3 class="text-lg font-medium sumi-iro mb-2 hand-line">Reservasi Hotel</h3>
+                        <p class="cha-iro text-sm leading-relaxed">Dialog dasar tentang tatacara reservasi hotel di jepang</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 8 - Gakkou -->
+            <a href="/guide/gakkou" class="group fade-in delay-200">
+                <div class="h-full rounded-xl overflow-hidden japanese-paper wabi-border transition-all duration-300 wabi-hover">
+                    <div class="w-full h-48 bg-gradient-to-br from-amber-50 to-yellow-50 overflow-hidden flex items-center justify-center p-4">
+                        <img src="/img/gakkou.png" alt="Gambar Sekolah" class="max-w-full max-h-full object-contain transition duration-500 group-hover:opacity-90" />
+                    </div>
+                    
+                    <div class="p-5">
+                        <div class="flex items-center mb-3">
+                            <span class="px-3 py-1 text-xs font-medium rounded-full japanese" style="background: rgba(110,80,60,0.1); color: #6f4b3e;">学校</span>
+                        </div>
+                        <h3 class="text-lg font-medium sumi-iro mb-2 hand-line">Siswa & Guru</h3>
+                        <p class="cha-iro text-sm leading-relaxed">Dialog dasar komunikasi siswa dan guru dikelas</p>
+                    </div>
+                </div>
+            </a>
         </div>
-        
-        <!-- Content Container -->
-        <div class="p-6">
-            <div class="flex items-center mb-2">
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">Transportasi</span>
+
+        <!-- Japanese-style Footer -->
+        <footer class="mt-20 text-center fade-in delay-300">
+            <div class="inline-block px-8 py-4 rounded-full japanese-paper wabi-border">
+                <p class="text-sm kanji cha-iro mb-1">&copy; 2025 会話しよう</p>
+                <p class="text-xs sumi-iro">Yui - 2025</p>
             </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition">Beli Tiket di Stasiun</h3>
-            <p class="text-gray-600 group-hover:text-gray-800 transition">Dialog dasar tentang tata cara membeli tiket di stasiun kereta</p>
-        </div>
-    </a>
-    <a href="/guide/kantor" class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
-        <!-- Image Container -->
-        <div class="w-full h-48 bg-gray-200 overflow-hidden flex items-center justify-center">
-            <img src="/img/kantor.png" alt="Gambar Stasiun" class="max-w-full max-h-full object-contain transition duration-500 group-hover:scale-105" />
-        </div>
-        
-        <!-- Content Container -->
-        <div class="p-6">
-            <div class="flex items-center mb-2">
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">Kantor</span>
-            </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition">Bekerja di Kantor</h3>
-            <p class="text-gray-600 group-hover:text-gray-800 transition">Dialog dasar tentang berkomunikasi dengan karyawan perusahaan</p>
-        </div>
-    </a>
-    <a href="/guide/reservasi" class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
-        <!-- Image Container -->
-        <div class="w-full h-48 bg-gray-200 overflow-hidden flex items-center justify-center">
-            <img src="/img/hotel.png" alt="Gambar Stasiun" class="max-w-full max-h-full object-contain transition duration-500 group-hover:scale-105" />
-        </div>
-        
-        <!-- Content Container -->
-        <div class="p-6">
-            <div class="flex items-center mb-2">
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">Reservasi</span>
-            </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition">Reservasi Hotel</h3>
-            <p class="text-gray-600 group-hover:text-gray-800 transition">Dialog dasar tentang tatacara reservasi hotel di jepang</p>
-        </div>
-    </a>
-</div>
+        </footer>
     </main>
-   
-
-
 </body>
 </html>

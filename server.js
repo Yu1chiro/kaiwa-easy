@@ -79,48 +79,82 @@ let specificInstructions = '';
 
 switch (category.toLowerCase()) {
     case 'stasiun':
-        specificInstructions = `Fokuskan dialog pada proses membeli tiket kereta di stasiun. 
-        Contoh: turis menanyakan dimana membeli tiket, staff menanyakan tujuan pergi, turis menanyakan harga tiket, cara membeli, waktu keberangkatan, dan nomor kereta.`;
+        specificInstructions = `Buatlah dialog yang lengkap dan mengalir secara alami antara turis (T) dan petugas stasiun (K).
+Turis sedang berada di stasiun dan ingin membeli tiket kereta.
+Mulai dari turis menanyakan lokasi pembelian tiket, menanyakan jadwal kereta, harga tiket, dan cara pembayarannya.
+Petugas menggunakan bahasa formal yang sopan (desu/masu).
+Pastikan percakapan berlangsung sampai proses pembelian tiket selesai dan turis mengucapkan terima kasih.`;
         break;
+
     case 'konbini':
-        specificInstructions = `Fokuskan dialog pada proses membeli barang di minimarket seperti makanan ringan, minuman, atau kebutuhan sehari-hari.`;
+        specificInstructions = `Buatlah dialog alami dan menyeluruh antara pelanggan (T) dan pegawai konbini (K) di Jepang.
+Fokuskan pada proses membeli beberapa barang seperti makanan ringan, minuman, atau kebutuhan sehari-hari.
+Dialog dimulai dari saat pelanggan masuk ke toko, menanyakan produk tertentu, hingga proses pembayaran di kasir.
+Pegawai menggunakan bahasa sopan (desu/masu), dan pelanggan juga berbicara sopan.`;
         break;
+
     case 'ramen':
-        specificInstructions = `Fokuskan dialog pada proses memesan makanan dan minuman di restoran ramen Jepang. Termasuk menanyakan menu, rekomendasi, dan membayar.`;
+        specificInstructions = `Buatlah dialog alami dan lengkap antara pelanggan (T) dan pelayan restoran ramen (K).
+Pelanggan masuk ke restoran, menanyakan menu, meminta rekomendasi, memesan makanan dan minuman, serta menyelesaikan pembayaran.
+Pastikan dialog mengalir dari awal (salam pembuka) sampai pelanggan selesai makan dan keluar dari restoran.
+Pelayan menggunakan bahasa sopan (desu/masu), dan pelanggan juga sopan.`;
         break;
+
     case 'souvenir':
-        specificInstructions = `Fokuskan dialog pada proses membeli souvenir di departement store. Termasuk menanyakan produk, rekomendasi produk dan cara membayar.`;
+        specificInstructions = `Buatlah dialog yang mengalir dan menyeluruh antara turis (T) dan pegawai toko souvenir (K) di department store.
+Mulai dari turis masuk, melihat-lihat barang, menanyakan rekomendasi, menanyakan harga dan stok barang, hingga proses pembayaran.
+Gunakan gaya percakapan yang sopan dan alami.
+Pegawai menggunakan bahasa sopan (desu/masu), dan turis juga sopan.`;
         break;
+
     case 'reservasi':
-    specificInstructions = `Fokuskan dialog pada proses melakukan reservasi hotel di Jepang. Termasuk menanyakan ketersediaan kamar, mengisi formulir reservasi, meminta informasi fasilitas, hingga proses pembayaran. Karyawan (K) menggunakan keigo sesuai standar pelayanan hotel di Jepang, dan turis (T) berbicara sopan menggunakan pola desu/masu.`;
-    break;
-    case 'kantor':
-       specificInstructions = `Fokuskan dialog pada proses berinteraksi di lingkungan kantor Jepang, seperti menanyakan prosedur pengurusan dokumen perusahaan, meminta izin bertemu direktur, atau bertanya mengenai aturan perusahaan. Gunakan gaya komunikasi formal di lingkungan kerja Jepang. Karyawan (K) menggunakan keigo sesuai budaya profesional di Jepang, sedangkan turis (T) juga berbicara dengan bahasa keigo sesuai budaya profesional kerja di jepang`;
+        specificInstructions = `Buatlah dialog yang lengkap dan alami antara turis (T) dan karyawan hotel (K) di Jepang.
+Gunakan data dummy untuk nama hotel, misalnya "Hotel Sakura", dan nama karyawan seperti "Tanaka-san".
+Mulai dari saat turis datang ke resepsionis untuk melakukan reservasi hotel.
+Dialog mencakup pertanyaan tentang ketersediaan kamar, harga, fasilitas hotel, mengisi formulir reservasi, hingga proses pembayaran.
+Karyawan hotel harus menggunakan bahasa keigo sesuai standar pelayanan profesional di Jepang.
+Turis menggunakan bahasa sopan (desu/masu).
+Pastikan percakapan selesai dengan salam penutup.`;
+        break;
+
+    case 'kaisha':
+        specificInstructions = `Buatlah dialog profesional dan lengkap di lingkungan kantor Jepang antara tamu (T) dan staf perusahaan (K).
+Gunakan data dummy untuk nama kantor seperti "Yamamoto Corporation", dan nama staf seperti "Sato-san" atau "Kobayashi-san".
+Topik mencakup prosedur pengurusan dokumen perusahaan, meminta izin bertemu direktur, atau bertanya mengenai aturan internal perusahaan.
+Staf kantor (K) menggunakan keigo yang tepat sesuai budaya kerja Jepang.
+Tamu (T) juga menggunakan keigo dalam konteks komunikasi formal di dunia kerja.
+Pastikan dialog memiliki alur yang jelas dari pembukaan, inti pembicaraan, hingga penutup.`;
+        break;
+
+    case 'gakkou':
+        specificInstructions = `Buatlah dialog alami dan tidak terlalu formal antara guru (Sensei) dan murid (Gakusei) di lingkungan sekolah Jepang.
+Fokuskan pada topik terkait tugas sekolah, seperti murid menanyakan tentang isi tugas, cara membuat tugas, tenggat waktu, dan boleh atau tidaknya bekerja sama dengan teman.
+Sensei berbicara dengan gaya lembut dan membimbing, tidak kaku atau terlalu formal (tidak perlu keigo berat, cukup sopan).
+Gakusei menggunakan gaya sopan seperti desu/masu, dengan nada penasaran atau sedikit bingung layaknya siswa yang ingin memahami instruksi.
+Pastikan dialog mengalir secara alami dari awal salam sampai penutup (seperti terima kasih atau pamit).`;
         break;
 }
 
+// Prompt akhir untuk Gemini
 const prompt = `
-Buatkan contoh dialog sederhana antara turis (T) dan karyawan (K)  di ${category} Jepang.
+Buatkan contoh dialog sederhana berdasarkan kategori "${category}" di Jepang.
 
 ${specificInstructions}
 
 Gunakan format berikut untuk setiap percakapan:
 
-K: [Kalimat dalam bahasa Jepang]
+K: (kanji) [Kalimat dalam bahasa Jepang]
 (Romaji: [pelafalan])
 (Arti: [Terjemahan Indonesia])
 
-T: [Kalimat dalam bahasa Jepang]
+T: (kanji) [Kalimat dalam bahasa Jepang]
 (Romaji: [pelafalan])
 (Arti: [Terjemahan Indonesia])
 
-Instruksi gaya bahasa:
-- Turis (T): gunakan gaya kasual atau pola desu/masu bukan kasual dan (hindari keigo).
-- Karyawan (K): gunakan keigo atau bentuk sopan yang sesuai dengan budaya pelayanan di Jepang.
-
-Buat 3–4 percakapan timbal balik singkat.
+Buat 3–4 percakapan timbal balik singkat.  
 Judul dialog: "${category}"
 `;
+
 
         const result = await model.generateContent(prompt);
         const response = await result.response;

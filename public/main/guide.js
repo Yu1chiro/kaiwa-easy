@@ -7,8 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'souvenir': 'Toko Souvenir',
         'pakaian': 'Toko Pakaian',
         'stasiun': 'Stasiun',
-        'kantor':'cara berkomunikasi di kantor',
-        'reservasi':'tata cara reservasi hotel'
     };
     
     // Update title and description
@@ -137,7 +135,8 @@ function getCategoryImagePath(category) {
         'pakaian': '/img/shatsu.png',
         'stasiun': '/img/eki.png',
         'reservasi': '/img/hotel.png',
-        'kantor': '/img/kantor.png',
+        'kaisha': '/img/kaisha.png',
+        'gakkou': '/img/gakkou.png',
 
     };
     return imageMap[category] || '/img/default.png'; // Fallback image
@@ -166,8 +165,9 @@ function getCategoryDescription(category) {
         'souvenir': 'Menanyakan & Membeli Souvenir',
         'pakaian': 'Membeli & Mencoba Pakaian',
         'stasiun': 'Menanyakan & Membeli Tiket di Stasiun',
-        'kantor': 'Berkomunikasi dengan karyawan terkait pekerjaan',
-        'reservasi': 'Cara melakukan reservasi hotel di jepang'
+        'kaisha': 'Berkomunikasi dengan karyawan terkait pekerjaan',
+        'reservasi': 'Cara melakukan reservasi hotel di jepang',
+        'gakkou': 'Dialog sederhana guru dan siswa di sekolah',
     };
     return descriptions[category] || 'Belajar dialog praktis untuk pemula';
 }
@@ -331,8 +331,8 @@ function displayDialog(dialogText, category) {
                 <div class="max-w-[70%] md:max-w-lg lg:max-w-2xl">
                     <div class="bg-gradient-to-r from-violet-600 to-indigo-600 rounded-xl md:rounded-2xl lg:rounded-3xl rounded-tl-sm p-4 md:p-6 lg:p-8 shadow-lg transition-all duration-200 hover:shadow-xl hover:scale-[1.02]">
                         <div class="flex items-center mb-2 md:mb-3 lg:mb-4">
-                         <span class="mr-2 md:mr-3 px-2 py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 bg-white/20 text-white text-xs md:text-sm lg:text-base rounded-full font-semibold">Staff</span>
-                            <span class="font-bold text-white text-sm md:text-lg lg:text-xl">🎌 Karyawan</span>
+                         <span class="mr-2 md:mr-3 px-2 py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 bg-white/20 text-white text-xs md:text-sm lg:text-base rounded-full font-semibold">Suzuki</span>
+                            <span class="font-bold text-white text-sm md:text-lg lg:text-xl">鈴木</span>
                         </div>
                         ${processDialogLine(textOnly)}
                         <button onclick="speakFromButton(this)" data-jp="${textOnly}" class="mt-2 text-white hover:underline text-sm">🔊 Dengarkan</button>
@@ -349,8 +349,8 @@ function displayDialog(dialogText, category) {
                 <div class="max-w-[70%] md:max-w-lg lg:max-w-2xl">
                     <div class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl md:rounded-2xl lg:rounded-3xl rounded-tr-sm p-4 md:p-6 lg:p-8 shadow-lg text-white transition-all duration-200 hover:shadow-xl hover:scale-[1.02]">
                         <div class="flex items-center mb-2 md:mb-3 lg:mb-4 justify-end">
-                            <span class="mr-2 md:mr-3 px-2 py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 bg-white/20 text-white text-xs md:text-sm lg:text-base rounded-full font-semibold">Tourist</span>
-                            <span class="font-bold text-white text-sm md:text-lg lg:text-xl">🎌 Turis</span>
+                            <span class="mr-2 md:mr-3 px-2 py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 bg-white/20 text-white text-xs md:text-sm lg:text-base rounded-full font-semibold">Mike</span>
+                            <span class="font-bold text-white text-sm md:text-lg lg:text-xl">マイク</span>
                         </div>
                         ${processDialogLine(textOnly, true)}
                         <button onclick="speakFromButton(this)" data-jp="${textOnly}" class="mt-2 text-white hover:underline text-sm">🔊 Dengarkan</button>
